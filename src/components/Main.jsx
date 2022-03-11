@@ -1,13 +1,23 @@
 import React from "react";
+import { useState } from "react";
+import { useEffect } from "react";
 import Posts from "./Posts";
+import SignUp from "./SignUp";
 
 const Main = () => {
-    
-    return (
-        <div>
-            {/* <Posts /> */}
-        </div>
-    )
-}
+  const [token, setToken] = useState("");
 
-export default Main
+  useEffect(() => {
+    console.log(token);
+  }, [token]);
+  return (
+    <div>
+      <SignUp setToken={setToken} />
+      {/* <Posts /> */}
+      {/* <Navbar />
+            <User /> */}
+    </div>
+  );
+};
+
+export default Main;

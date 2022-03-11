@@ -1,10 +1,19 @@
-import React from "react";
-import { fetchAllPosts } from "../api";
+// import React from "react";
+// import { fetchAllPosts } from "../api";
 
-const Posts = () => {
-    <div>
+// const Posts = () => {
+//   const allPosts = fetchAllPosts();
 
-    </div>
-}
+//   {
+//     allPosts.map((post, i) => {
+//       return (
+//         <div>
+//           key={index}
+//           className="object-preview"
+//         </div>
+//       );
+//     });
+//   }
+// };
 
-export default Posts
+// export default Posts;
