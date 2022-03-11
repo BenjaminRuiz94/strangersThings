@@ -13,7 +13,7 @@ const Main = () => {
   return (
     <div>
       <SignUp setToken={setToken} />
-      {/* <Posts /> */}
+      <Posts />
       {/* <Navbar />
             <User /> */}
     </div>
