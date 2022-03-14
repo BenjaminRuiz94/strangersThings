@@ -32,7 +32,7 @@ export async function fetchAllPosts() {
     const response = await fetch(`${BASE_URL}/posts`);
 
     const result = await response.json();
-
+    console.log("kjsdhflkashfjklasdh");
     const posts = result.data.posts;
 
     localStorage.setItem("posts", JSON.stringify(posts));

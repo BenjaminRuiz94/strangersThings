@@ -10,6 +10,7 @@ const Main = () => {
   useEffect(() => {
     console.log(token);
   }, [token]);
+
   return (
     <div>
       <SignUp setToken={setToken} />
