@@ -1,11 +1,8 @@
 import React from "react";
-import { useState } from "react";
 import { registerUser } from "../api";
 
-const SignUp = ({ setToken }) => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-
+const SignUp = ({ setToken, username, setUsername, password, setPassword }) => {
+  
   return (
     <div>
       <form

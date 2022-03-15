@@ -15,7 +15,6 @@ const Posts = () => {
     };
     fetchData();
   }, []);
-  console.log(allPosts);
   return (
     <div>
       {allPosts.map((post, i) => {
@@ -28,14 +27,12 @@ const Posts = () => {
               <h2>{post.author.username}</h2> <h2>{post.location}</h2>
               <h3>{post.updatedAt}</h3>
             </header>
-            <body>
-              <article>{post.description}</article>
+            <article>{post.description}</article>
               <b>{post.price}</b>
               <u>
                 {" "}
                 {post.willDeliver ? "Will Deliver" : "Delivery not available"}
               </u>
-            </body>
             <footer>{post.createdAt}</footer>
           </div>
         );
