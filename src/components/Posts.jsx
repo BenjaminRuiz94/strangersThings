@@ -1,36 +1,42 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { fetchAllPosts } from "../api";
-import { useState } from "react";
-import { useEffect } from "react";
 
-fetchAllPosts();
-const Posts = async () => {
+const Posts = () => {
   const [allPosts, setAllPosts] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await fetchAllPosts();
-        console.log(fetchAllPosts());
-        const result = await response.json();
-        if (result.error) throw result.error;
-        console.log(result);
-        setAllPosts(result);
+        setAllPosts(response);
       } catch (error) {
         console.error("OH NO!!!!!");
       }
     };
     fetchData();
   }, []);
-
+  console.log(allPosts);
   return (
     <div>
       {allPosts.map((post, i) => {
         return (
           <div key={i} className="post">
             <header>
-              <h1>{post.title}</h1> <h2>{post.author.username}</h2>
+              <h1>
+                {post.title}, {post.active ? "Active" : "Inactive"}
+              </h1>{" "}
+              <h2>{post.author.username}</h2> <h2>{post.location}</h2>
+              <h3>{post.updatedAt}</h3>
             </header>
+            <body>
+              <article>{post.description}</article>
+              <b>{post.price}</b>
+              <u>
+                {" "}
+                {post.willDeliver ? "Will Deliver" : "Delivery not available"}
+              </u>
+            </body>
+            <footer>{post.createdAt}</footer>
           </div>
         );
       })}

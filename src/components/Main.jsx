@@ -14,6 +14,7 @@ const Main = () => {
   return (
     <div>
       <SignUp setToken={setToken} />
+
       <Posts />
       {/* <Navbar />
             <User /> */}

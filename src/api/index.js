@@ -22,22 +22,16 @@ export const registerUser = async (username, password) => {
 };
 
 export async function fetchAllPosts() {
-  if (localStorage.getItem("posts")) {
-    return JSON.parse(localStorage.getItem("posts"));
-  }
-
   const url = `${BASE_URL}/posts`;
 
   try {
     const response = await fetch(`${BASE_URL}/posts`);
 
     const result = await response.json();
-    console.log("kjsdhflkashfjklasdh");
+    console.log(result);
     const posts = result.data.posts;
 
-    localStorage.setItem("posts", JSON.stringify(posts));
-
-    return posts;
+    return posts; // we could return just the result itself in order to capture errors
   } catch (err) {
     console.error("cant fetch posts");
   }
