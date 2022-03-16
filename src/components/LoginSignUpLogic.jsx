@@ -2,6 +2,8 @@ import React, { useEffect } from "react";
 import SignUp from "./SignUp";
 import Login from "./Login";
 import { userData } from "../api";
+import { Redirect } from "react-router-dom";
+import { useState } from "react";
 
 const LoginSignUp = ({
   isLoggedIn,
@@ -10,10 +12,22 @@ const LoginSignUp = ({
   setUsername,
   password,
   setPassword,
+  setIsLoggedIn,
 }) => {
-  const user = userData();
-  console.log(user);
+  // const user = userData();
+  // console.log(user);
+  const [Tok, setTo] = useState(0);
+  const setTok = () => {
+    setToken(" ");
+    localStorage.removeItem("token");
+    setTo(1);
+    setIsLoggedIn(false);
+    // return <Redirect push to={{ pathname: "/Login" }} />;
+  };
 
+  useEffect(() => {
+    console.log("TEST");
+  }, [Tok]);
   // console.log(username, "username")
 
   return (
@@ -21,9 +35,7 @@ const LoginSignUp = ({
       {isLoggedIn ? (
         <div>
           <div>{`Welcome Back ${username}`}</div>
-          <button 
-            className="logOut" 
-            onClick={setToken("")}>
+          <button className="logOut" onClick={() => setTok()}>
             Log Out
           </button>
         </div>
@@ -39,7 +51,7 @@ const LoginSignUp = ({
             />
           </div>
           <div>
-              <Login/>
+            <Login />
           </div>
         </div>
       )}

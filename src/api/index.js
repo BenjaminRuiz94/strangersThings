@@ -1,4 +1,3 @@
-
 const BASE_URL =
   "https://strangers-things.herokuapp.com/api/2202-FTB-ET-WEB-FT";
 
@@ -37,14 +36,15 @@ export async function fetchAllPosts() {
 
 export const userData = async () => {
   try {
-    const response = await fetch(`${BASE_URL}/users/me`)
-    const data = await response.json
-    return data
+    const response = await fetch(`${BASE_URL}/users/me`);
+    console.log(response);
+    const data = await response.json();
+    // console.log(data);
+    return data;
   } catch {
-    console.error("can't get user data")
+    console.error("can't get user data");
   }
-  
-}
+};
 
 export const loginUser = async (username, password) => {
   try {
@@ -63,6 +63,6 @@ export const loginUser = async (username, password) => {
     const data = await response.json();
     return data;
   } catch {
-    console.error("can't log in user")
+    console.error("can't log in user");
   }
-}
+};

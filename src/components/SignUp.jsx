@@ -2,7 +2,7 @@ import React from "react";
 import { registerUser } from "../api";
 
 const SignUp = ({ setToken, username, setUsername, password, setPassword }) => {
-  
+  console.log(username);
   return (
     <div>
       <form
