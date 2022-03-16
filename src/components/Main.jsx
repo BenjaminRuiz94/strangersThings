@@ -3,14 +3,14 @@ import { useState } from "react";
 import { useEffect } from "react";
 import Posts from "./Posts";
 import LoginSignUp from "./LoginSignUpLogic";
+import PostForm from "./PostForm";
 
 const Main = () => {
   const [token, setToken] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  console.log("token", localStorage.getItem("token"));
   useEffect(() => {
     localStorage.getItem("token") ? setIsLoggedIn(true) : null;
+    setToken(localStorage.getItem("token"))
   }, [token]);
 
   return (
@@ -21,7 +21,9 @@ const Main = () => {
         token={token}
         setToken={setToken}
       />
+      <PostForm token={token}/>
       <Posts />
+      
     </div>
   );
 };

@@ -15,13 +15,11 @@ const Login = ({ setToken }) => {
           const result = await loginUser(
             formState.username,
             formState.password
-          );
-          console.log(result, "THIS IS MY RESULT FOR LOGIN");
+          )
           setToken(result.data.token);
           localStorage.setItem("token", result.data.token);
         }}
       >
-        {/* duplicate the input for password. */}
         <input
           value={formState.username}
           type="text"

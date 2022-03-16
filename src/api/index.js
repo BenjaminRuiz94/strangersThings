@@ -28,7 +28,7 @@ export async function fetchAllPosts() {
     const result = await response.json();
     const posts = result.data.posts;
 
-    return posts; // we could return just the result itself in order to capture errors
+    return posts; 
   } catch (err) {
     console.error("cant fetch posts");
   }
@@ -43,7 +43,6 @@ export const userData = async (token) => {
       },
     });
     const data = await response.json();
-    // console.log(data);
     return data;
   } catch {
     console.error("can't get user data");
@@ -70,3 +69,22 @@ export const loginUser = async (username, password) => {
     console.error("can't log in user");
   }
 };
+
+export const createNewPost = async (token, title, description, price, location, willDeliver) => {
+  fetch(`${BASE_URL}/posts`, {
+  method: "POST",
+  headers: {
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${token}`
+  },
+  body: JSON.stringify({
+    post: {
+      title,
+      description,
+      price,
+      location,
+      willDeliver
+    }
+  })
+})
+}
