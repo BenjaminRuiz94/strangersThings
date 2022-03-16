@@ -51,7 +51,7 @@ const LoginSignUp = ({
             />
           </div>
           <div>
-            <Login />
+            <Login setToken={setToken} />
           </div>
         </div>
       )}

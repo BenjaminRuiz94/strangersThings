@@ -1,35 +1,42 @@
 import React from "react";
 import { registerUser } from "../api";
+import { useState } from "react";
 
-const SignUp = ({ setToken, username, setUsername, password, setPassword }) => {
-  console.log(username);
+const SignUp = ({ setToken }) => {
+  const [formState, setFormState] = useState({
+    username: "",
+
+    password: "",
+  });
   return (
     <div>
       <form
         onSubmit={async (e) => {
           e.preventDefault();
-          console.log({ username, password });
-          const result = await registerUser(username, password);
-          console.log(result);
+          const result = await registerUser(
+            formState.username,
+            formState.password
+          );
+          console.log(result, "This is my result for sign up");
           setToken(result.data.token);
           localStorage.setItem("token", result.data.token);
         }}
       >
         {/* duplicate the input for password. */}
         <input
-          value={username}
+          value={formState.username}
           type="text"
           placeholder="username"
           onChange={(e) => {
-            setUsername(e.target.value);
+            setFormState({ ...formState, username: e.target.value });
           }}
         />
         <input
-          value={password}
+          value={formState.password}
           type="text"
           placeholder="password"
           onChange={(e) => {
-            setPassword(e.target.value);
+            setFormState({ ...formState, password: e.target.value });
           }}
         />
         <button type="submit">sign up</button>
