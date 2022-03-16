@@ -7,8 +7,6 @@ import LoginSignUp from "./LoginSignUpLogic";
 const Main = () => {
   const [token, setToken] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
 
   console.log("token", localStorage.getItem("token"));
   useEffect(() => {
@@ -19,12 +17,9 @@ const Main = () => {
     <div>
       <LoginSignUp
         isLoggedIn={isLoggedIn}
-        setToken={setToken}
-        username={username}
-        setUsername={setUsername}
-        password={password}
-        setPassword={setPassword}
         setIsLoggedIn={setIsLoggedIn}
+        token={token}
+        setToken={setToken}
       />
       <Posts />
     </div>

@@ -4,7 +4,7 @@ import Login from "./Login";
 import { userData } from "../api";
 import { useState } from "react";
 
-const LoginSignUp = ({ isLoggedIn, setToken, setIsLoggedIn }) => {
+const LoginSignUp = ({ isLoggedIn, setToken, setIsLoggedIn, token }) => {
 
   const clearToken = () => {
     setToken("");
@@ -21,7 +21,7 @@ const LoginSignUp = ({ isLoggedIn, setToken, setIsLoggedIn }) => {
       setUsername (result.data.username)
     };
     getUserName()
-  }, [])
+  }, [token])
 
   return (
     <>
@@ -34,9 +34,11 @@ const LoginSignUp = ({ isLoggedIn, setToken, setIsLoggedIn }) => {
         </div>
       ) : (
         <div>
+          <div>Create account:</div>
           <div>
             <SignUp setToken={setToken} />
           </div>
+          <div>Already have an account? Login:</div>
           <div>
             <Login setToken={setToken} />
           </div>

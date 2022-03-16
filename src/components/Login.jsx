@@ -5,7 +5,6 @@ import { useState } from "react";
 const Login = ({ setToken }) => {
   const [formState, setFormState] = useState({
     username: "",
-
     password: "",
   });
   return (
@@ -27,14 +26,16 @@ const Login = ({ setToken }) => {
           value={formState.username}
           type="text"
           placeholder="username"
+          required
           onChange={(e) => {
             setFormState({ ...formState, username: e.target.value });
           }}
         />
         <input
           value={formState.password}
-          type="text"
+          type="password"
           placeholder="password"
+          required
           onChange={(e) => {
             setFormState({ ...formState, password: e.target.value });
           }}
