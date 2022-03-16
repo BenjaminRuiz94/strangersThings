@@ -34,10 +34,14 @@ export async function fetchAllPosts() {
   }
 }
 
-export const userData = async () => {
+export const userData = async (token) => {
   try {
-    const response = await fetch(`${BASE_URL}/users/me`);
-    console.log(response);
+    const response = await fetch(`${BASE_URL}/users/me`, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
     const data = await response.json();
     // console.log(data);
     return data;
