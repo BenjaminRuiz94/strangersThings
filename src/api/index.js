@@ -19,15 +19,20 @@ export const registerUser = async (username, password) => {
   return data;
 };
 
-export async function fetchAllPosts() {
-  const url = `${BASE_URL}/posts`;
-
+export async function fetchAllPosts(token) {
   try {
-    const response = await fetch(`${BASE_URL}/posts`);
+    const response = await fetch(`${BASE_URL}/posts`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
 
     const result = await response.json();
-    const posts = result.data.posts;
 
+    const posts = result.data.posts;
+    console.log(posts);
     return posts;
   } catch (err) {
     console.error("cant fetch posts");
@@ -103,4 +108,14 @@ export const createNewPost = async (
   } catch (err) {
     console.error("cant fetch posts");
   }
+};
+
+export const deletePost = (token, postId) => {
+  fetch(`${BASE_URL}/posts/${postId}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  });
 };

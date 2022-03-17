@@ -20,7 +20,8 @@ const Main = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetchAllPosts();
+        const response = await fetchAllPosts(localStorage.getItem("token"));
+
         setAllPosts(response);
       } catch (error) {
         console.error("OH NO!!!!!");
@@ -54,7 +55,7 @@ const Main = () => {
         </button>
       )}
 
-      <Posts allPosts={allPosts} />
+      <Posts allPosts={allPosts} setAllPosts={setAllPosts} token={token} />
     </div>
   );
 };

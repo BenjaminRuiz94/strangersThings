@@ -1,7 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { fetchAllPosts } from "../api";
+import React from "react";
+import { useState } from "react";
+import { deletePost } from "../api";
 
-const Posts = ({ allPosts }) => {
+const Posts = ({ allPosts, token, setAllPosts }) => {
+  const [updatedPosts, setUpdatedPosts] = useState([]);
   return (
     <div>
       {allPosts.map((post, i) => {
@@ -22,6 +24,17 @@ const Posts = ({ allPosts }) => {
               {post.willDeliver ? "Will Deliver" : "Delivery not available"}
             </u>
             <footer>{post.createdAt}</footer>
+            {post.isAuthor ? (
+              <button
+                onClick={() => {
+                  // deletePost(token, post._id);
+                  // setUpdatedPosts([allPosts - updatedPosts]);
+                  // setAllPosts(updatedPosts);
+                }}
+              >
+                Edit Post
+              </button>
+            ) : null}
           </div>
         );
       })}
