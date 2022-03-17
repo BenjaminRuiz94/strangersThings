@@ -28,7 +28,7 @@ export async function fetchAllPosts() {
     const result = await response.json();
     const posts = result.data.posts;
 
-    return posts; 
+    return posts;
   } catch (err) {
     console.error("cant fetch posts");
   }
@@ -70,21 +70,37 @@ export const loginUser = async (username, password) => {
   }
 };
 
-export const createNewPost = async (token, title, description, price, location, willDeliver) => {
-  fetch(`${BASE_URL}/posts`, {
-  method: "POST",
-  headers: {
-    'Content-Type': 'application/json',
-    'Authorization': `Bearer ${token}`
-  },
-  body: JSON.stringify({
-    post: {
-      title,
-      description,
-      price,
-      location,
-      willDeliver
-    }
-  })
-})
-}
+export const createNewPost = async (
+  token,
+  title,
+  description,
+  price,
+  location,
+  willDeliver
+) => {
+  try {
+    const response = await fetch(`${BASE_URL}/posts`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        post: {
+          title,
+          description,
+          price,
+          location,
+          willDeliver,
+        },
+      }),
+    });
+
+    const result = await response.json();
+    const post = result.data.post;
+
+    return post;
+  } catch (err) {
+    console.error("cant fetch posts");
+  }
+};

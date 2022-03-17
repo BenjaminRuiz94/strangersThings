@@ -1,20 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { fetchAllPosts } from "../api";
 
-const Posts = () => {
-  const [allPosts, setAllPosts] = useState([]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetchAllPosts();
-        setAllPosts(response);
-      } catch (error) {
-        console.error("OH NO!!!!!");
-      }
-    };
-    fetchData();
-  }, []);
+const Posts = ({ allPosts }) => {
   return (
     <div>
       {allPosts.map((post, i) => {
@@ -29,11 +16,11 @@ const Posts = () => {
               <h3>{post.updatedAt}</h3>
             </header>
             <article>{post.description}</article>
-              <b>{post.price}</b>
-              <u>
-                {" "}
-                {post.willDeliver ? "Will Deliver" : "Delivery not available"}
-              </u>
+            <b>{post.price}</b>
+            <u>
+              {" "}
+              {post.willDeliver ? "Will Deliver" : "Delivery not available"}
+            </u>
             <footer>{post.createdAt}</footer>
           </div>
         );
