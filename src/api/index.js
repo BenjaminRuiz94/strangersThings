@@ -110,12 +110,31 @@ export const createNewPost = async (
   }
 };
 
-export const deletePost = (token, postId) => {
-  fetch(`${BASE_URL}/posts/${postId}`, {
+export const deletePost = async (token, postId) => {
+  const response = await fetch(`${BASE_URL}/posts/${postId}`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     },
   });
+  const result = await response.json()
+  return result
 };
+
+export const sendMessage = async (token, postId, content) => {
+  const response = await fetch(`${BASE_URL}/posts/${postId}/messages`, {
+    method: "POST",
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    },
+    body: JSON.stringify({
+      message: {
+        content
+      }
+    })
+  })
+  const result = await response.json()
+  return result
+}

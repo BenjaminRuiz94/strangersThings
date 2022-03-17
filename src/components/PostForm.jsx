@@ -10,6 +10,7 @@ const PostForm = ({ token, allPosts, setAllPosts, setNewPostWanted }) => {
     willDeliver: false,
   });
 
+  
   return (
     <>
       <form
@@ -23,10 +24,10 @@ const PostForm = ({ token, allPosts, setAllPosts, setNewPostWanted }) => {
             formState.location,
             formState.willDeliver
           );
-          console.log(createPost, "Create post before updateState");
           setAllPosts([...allPosts, createPost]);
           setNewPostWanted(false);
-        }}
+        
+      }}
       >
         <div>Create A Post</div>
         <input
@@ -60,7 +61,6 @@ const PostForm = ({ token, allPosts, setAllPosts, setNewPostWanted }) => {
           type="text"
           value={formState.location}
           placeholder="Location"
-          required
           onChange={(e) => {
             setFormState({ ...formState, location: e.target.value });
           }}
@@ -70,19 +70,13 @@ const PostForm = ({ token, allPosts, setAllPosts, setNewPostWanted }) => {
           <input
             type="checkbox"
             value={formState.willDeliver}
-            required
-            onChange={(e) => {
-              setFormState({ ...formState, willDeliver: e.target.value });
+            onChange={() => {
+              setFormState({ ...formState, willDeliver: !formState.willDeliver });
             }}
           />
         </div>
         <button
           type="submit"
-          // onClick={() => {
-          //   const hidePost = document.getElementById("newPost");
-          //   console.log(hidePost);
-          //   hidePost.style.display = "none";
-          // }}
         >
           Submit Post
         </button>

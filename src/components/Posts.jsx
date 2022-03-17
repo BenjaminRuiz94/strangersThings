@@ -1,9 +1,10 @@
-import React from "react";
-import { useState } from "react";
-import { deletePost } from "../api";
+import React, { useState } from "react";
+import { deletePost, sendMessage } from "../api";
 
 const Posts = ({ allPosts, token, setAllPosts }) => {
-  const [updatedPosts, setUpdatedPosts] = useState([]);
+  
+  const [content, setContent] = useState({})
+  
   return (
     <div>
       {allPosts.map((post, i) => {
@@ -11,29 +12,54 @@ const Posts = ({ allPosts, token, setAllPosts }) => {
           <div key={i} className="post">
             <header>
               <h1>
-                {post.title}, {post.active ? "Active" : "Inactive"}
-              </h1>{" "}
+                {post.title}, {post.price}
+              </h1>
+
               <h2>{post.author.username}</h2>
-              <h2>{post.location}</h2>
-              <h3>{post.updatedAt}</h3>
+
+              <h2>
+                {post.location === "[On Request]"
+                  ? "Location available on request"
+                  : post.location}
+              </h2>
             </header>
+
             <article>{post.description}</article>
-            <b>{post.price}</b>
-            <u>
-              {" "}
-              {post.willDeliver ? "Will Deliver" : "Delivery not available"}
-            </u>
-            <footer>{post.createdAt}</footer>
+
+            <div>{post.willDeliver ? "Will Deliver" : "Local Pickup Only"}</div>
+
             {post.isAuthor ? (
               <button
-                onClick={() => {
-                  // deletePost(token, post._id);
-                  // setUpdatedPosts([allPosts - updatedPosts]);
-                  // setAllPosts(updatedPosts);
+                onClick={async () => {
+                  await deletePost(token, post._id);
+                  const filteredPosts = allPosts.filter((currentPost) => {
+                    return currentPost._id !== post._id;
+                  });
+                  setAllPosts(filteredPosts);
+                }}
+              >Delete</button>
+            ) : null}
+
+            {!post.isAuthor ? (
+              <form
+                onSubmit={async (e) => {
+                  e.preventDefault();
+                  async () => {
+                    await sendMessage(token, post._id, content);
+                  };
                 }}
               >
-                Edit Post
-              </button>
+                <input
+                  type="text"
+                  placeholder="Message"
+                  value={content}
+                  onChange={(e) => {
+                    const postId = post._id
+                    // setContent(postId: e.target.value)
+                  }}
+                />
+                <button type="submit">Send</button>
+              </form>
             ) : null}
           </div>
         );
