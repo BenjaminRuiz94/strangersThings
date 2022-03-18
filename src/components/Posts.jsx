@@ -1,10 +1,12 @@
 import React, { useState } from "react";
-import { deletePost, sendMessage } from "../api";
+import { deletePost } from "../api";
+import { Message } from "./Message";
 
 const Posts = ({ allPosts, token, setAllPosts }) => {
-  
-  const [content, setContent] = useState({})
-  
+  const [msgBox, setMsgBox] = useState({
+    yes: true,
+    idx: -1,
+  });
   return (
     <div>
       {allPosts.map((post, i) => {
@@ -28,6 +30,28 @@ const Posts = ({ allPosts, token, setAllPosts }) => {
 
             <div>{post.willDeliver ? "Will Deliver" : "Local Pickup Only"}</div>
 
+            {msgBox.yes ? (
+              msgBox.idx == i ? (
+                <Message post={post} setMsgBox={setMsgBox} />
+              ) : (
+                <button
+                  onClick={() => {
+                    setMsgBox({ ...msgBox, idx: i });
+                  }}
+                >
+                  Create Message
+                </button>
+              )
+            ) : (
+              <button
+                onClick={() => {
+                  setMsgBox({ ...msgBox, idx: i });
+                }}
+              >
+                Create Message
+              </button>
+            )}
+
             {post.isAuthor ? (
               <button
                 onClick={async () => {
@@ -37,29 +61,9 @@ const Posts = ({ allPosts, token, setAllPosts }) => {
                   });
                   setAllPosts(filteredPosts);
                 }}
-              >Delete</button>
-            ) : null}
-
-            {!post.isAuthor ? (
-              <form
-                onSubmit={async (e) => {
-                  e.preventDefault();
-                  async () => {
-                    await sendMessage(token, post._id, content);
-                  };
-                }}
               >
-                <input
-                  type="text"
-                  placeholder="Message"
-                  value={content}
-                  onChange={(e) => {
-                    const postId = post._id
-                    // setContent(postId: e.target.value)
-                  }}
-                />
-                <button type="submit">Send</button>
-              </form>
+                Delete
+              </button>
             ) : null}
           </div>
         );
