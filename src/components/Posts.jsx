@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { deletePost } from "../api";
 import { Message } from "./Message";
+//component for our posts. Sets all of the posts on the main page.
 
+//included inside this component is our message component. Allows user to send message to posts that they are not the owner of.
 const Posts = ({ allPosts, token, setAllPosts }) => {
   const [msgBox, setMsgBox] = useState({
     yes: true,
@@ -10,6 +12,7 @@ const Posts = ({ allPosts, token, setAllPosts }) => {
   return (
     <div>
       {allPosts.map((post, i) => {
+        //gotta map over the posts and return result to get all posts.
         return (
           <div key={i} className="post">
             <header className="pHeader">
@@ -32,29 +35,31 @@ const Posts = ({ allPosts, token, setAllPosts }) => {
               {post.willDeliver ? "Will Deliver" : "Local Pickup Only"}
             </div>
 
-            {msgBox.yes ? (
-              msgBox.idx == i ? (
-                <Message post={post} setMsgBox={setMsgBox} />
+            {!post.isAuthor ? ( //edited this part to make message button only appear on non-user submitted posts.
+              msgBox.yes ? (
+                msgBox.idx == i ? (
+                  <Message post={post} setMsgBox={setMsgBox} /> //here is that message component.
+                ) : (
+                  <button
+                    className="msgButton1"
+                    onClick={() => {
+                      setMsgBox({ ...msgBox, idx: i });
+                    }}
+                  >
+                    Send Message
+                  </button>
+                )
               ) : (
                 <button
-                  className="msgButton1"
+                  className="msgButton2"
                   onClick={() => {
                     setMsgBox({ ...msgBox, idx: i });
                   }}
                 >
-                  Send Message
+                  Create Message
                 </button>
               )
-            ) : (
-              <button
-                className="msgButton2"
-                onClick={() => {
-                  setMsgBox({ ...msgBox, idx: i });
-                }}
-              >
-                Create Message
-              </button>
-            )}
+            ) : null}
 
             {post.isAuthor ? (
               <button

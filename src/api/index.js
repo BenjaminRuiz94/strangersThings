@@ -1,3 +1,7 @@
+//any time data needs to be fetched from url, define component here and export.
+
+//each component is labeled / named according to its purpose.
+
 const BASE_URL =
   "https://strangers-things.herokuapp.com/api/2202-FTB-ET-WEB-FT";
 
@@ -118,23 +122,23 @@ export const deletePost = async (token, postId) => {
       Authorization: `Bearer ${token}`,
     },
   });
-  const result = await response.json()
-  return result
+  const result = await response.json();
+  return result;
 };
 
 export const sendMessage = async (token, postId, content) => {
   const response = await fetch(`${BASE_URL}/posts/${postId}/messages`, {
     method: "POST",
     headers: {
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${token}`
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
     },
     body: JSON.stringify({
       message: {
-        content
-      }
-    })
-  })
-  const result = await response.json()
-  return result
-}
+        content,
+      },
+    }),
+  });
+  const result = await response.json();
+  return result;
+};

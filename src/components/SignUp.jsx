@@ -1,7 +1,7 @@
 import React from "react";
-import { registerUser } from "../api";
+import { registerUser } from "../api"; //component imported from API that fetches data from URL
 import { useState } from "react";
-
+//the first component signs up a new user if not currently one.
 const SignUp = ({ setToken }) => {
   const [formState, setFormState] = useState({
     username: "",
@@ -14,11 +14,13 @@ const SignUp = ({ setToken }) => {
         onSubmit={async (e) => {
           e.preventDefault();
           if (formState.password === formState.confirmPassword) {
+            //makes sure the password and confirm password section match or else
+            //confirming the password would not matter.
             const result = await registerUser(
               formState.username,
               formState.password
             );
-            setToken(result.data.token);
+            setToken(result.data.token); //setting token and saving in local storage once registered.
             localStorage.setItem("token", result.data.token);
           }
         }}
@@ -34,7 +36,7 @@ const SignUp = ({ setToken }) => {
         />
         <input
           value={formState.password}
-          type="password"
+          type="password" //this hides values like a password.
           placeholder="password"
           required
           onChange={(e) => {

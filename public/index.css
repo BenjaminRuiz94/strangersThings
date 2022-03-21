@@ -4,6 +4,11 @@
   background-color: antiquewhite;
 }
 
+.mainDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .registerFunctions {
   background-color: dimgray;
   border: double black;
@@ -13,6 +18,7 @@
 }
 
 .userFunctions {
+  min-width: 98%;
   background-color: dimgray;
   border: double black;
   display: flex;
@@ -39,7 +45,8 @@ input[type="password"] {
 }
 
 input[type="password"]:focus {
-  background-color: rgb(160, 196, 208);
+  background-color: rgb(45, 45, 45);
+  color: azure;
   border: double rgb(0, 0, 0);
   width: 100%;
 }
@@ -103,6 +110,12 @@ input[type="password"]:focus {
   max-width: fit-content;
   padding: 10px;
   font-weight: bold;
+}
+
+.createPostB {
+  max-width: fit-content;
+  max-height: fit-content;
+  padding: 5px;
 }
 
 .post {

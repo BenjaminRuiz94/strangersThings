@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { createNewPost } from "../api";
-
+import { createNewPost } from "../api"; //createNewPost imported from API. Data needed from URL.
+//this is the component to create a new post.
 const PostForm = ({ token, allPosts, setAllPosts, setNewPostWanted }) => {
   const [formState, setFormState] = useState({
+    //set state for our title, description, price, location and delivery.
     title: "",
     description: "",
     price: "",
@@ -12,7 +13,7 @@ const PostForm = ({ token, allPosts, setAllPosts, setNewPostWanted }) => {
 
   return (
     <>
-      <form
+      <form //all of our inputs go inside of this form, so upon submit they create a new post through altering state.
         className="createPost"
         onSubmit={async (e) => {
           e.preventDefault();
@@ -36,7 +37,7 @@ const PostForm = ({ token, allPosts, setAllPosts, setNewPostWanted }) => {
           placeholder="Title"
           required
           onChange={(e) => {
-            setFormState({ ...formState, title: e.target.value });
+            setFormState({ ...formState, title: e.target.value }); //setting new state for title based on input values.
           }}
         />
         <input
@@ -46,7 +47,7 @@ const PostForm = ({ token, allPosts, setAllPosts, setNewPostWanted }) => {
           placeholder="Description"
           required
           onChange={(e) => {
-            setFormState({ ...formState, description: e.target.value });
+            setFormState({ ...formState, description: e.target.value }); //new description based on input values.
           }}
         />
         <input
@@ -71,10 +72,11 @@ const PostForm = ({ token, allPosts, setAllPosts, setNewPostWanted }) => {
         <div className="deliver">
           <div>Deliver?</div>
           <input
-            type="checkbox"
+            type="checkbox" //checkbox for true / false values.
             value={formState.willDeliver}
             onChange={() => {
               setFormState({
+                //setting state is slightly different because of true / false value.
                 ...formState,
                 willDeliver: !formState.willDeliver,
               });

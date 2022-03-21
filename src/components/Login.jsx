@@ -1,7 +1,7 @@
 import React from "react";
-import { loginUser } from "../api";
+import { loginUser } from "../api"; //different API request. Now we are checking if user already exists, then we set token.
 import { useState } from "react";
-
+//this functions the same as the signup component, but edited to login.
 const Login = ({ setToken }) => {
   const [formState, setFormState] = useState({
     username: "",

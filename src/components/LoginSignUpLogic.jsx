@@ -3,7 +3,10 @@ import SignUp from "./SignUp";
 import Login from "./Login";
 import { userData } from "../api";
 import { useState } from "react";
+//this contains the logic for if you need to log in or sign up. Displays both options below as the components for each have been imported
 
+//eventully can edit this to only display one or the other. Probably just Login with a button to signup.
+//If my understanding is correct, I can refer to the way I am controlling the apperance of the message and create post buttons / sections to help.
 const LoginSignUp = ({ isLoggedIn, setToken, setIsLoggedIn, token }) => {
   const clearToken = () => {
     setToken("");
