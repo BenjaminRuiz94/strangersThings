@@ -2,7 +2,7 @@ import react from "react";
 import { useState } from "react";
 import { sendMessage } from "../api";
 
-export const Message = ({ post, setMsgBox }) => {
+export const Message = ({ post, setMsgBox, msgBox }) => {
   const [formState, setFormState] = useState("");
 
   return (
@@ -12,6 +12,7 @@ export const Message = ({ post, setMsgBox }) => {
         async () => {
           await sendMessage(token, post._id, content);
         };
+        setMsgBox({ ...msgBox, idx: -1 });
       }}
     >
       <input

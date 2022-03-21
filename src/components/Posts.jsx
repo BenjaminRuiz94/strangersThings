@@ -38,7 +38,7 @@ const Posts = ({ allPosts, token, setAllPosts }) => {
             {!post.isAuthor ? ( //edited this part to make message button only appear on non-user submitted posts.
               msgBox.yes ? (
                 msgBox.idx == i ? (
-                  <Message post={post} setMsgBox={setMsgBox} /> //here is that message component.
+                  <Message post={post} setMsgBox={setMsgBox} msgBox={msgBox} /> //here is that message component.
                 ) : (
                   <button
                     className="msgButton1"
