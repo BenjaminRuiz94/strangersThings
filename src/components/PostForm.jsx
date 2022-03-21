@@ -10,10 +10,10 @@ const PostForm = ({ token, allPosts, setAllPosts, setNewPostWanted }) => {
     willDeliver: false,
   });
 
-  
   return (
     <>
       <form
+        className="createPost"
         onSubmit={async (e) => {
           e.preventDefault();
           const createPost = await createNewPost(
@@ -26,11 +26,11 @@ const PostForm = ({ token, allPosts, setAllPosts, setNewPostWanted }) => {
           );
           setAllPosts([...allPosts, createPost]);
           setNewPostWanted(false);
-        
-      }}
+        }}
       >
-        <div>Create A Post</div>
+        <div className="createTitle">Create A Post</div>
         <input
+          className="title"
           type="text"
           value={formState.title}
           placeholder="Title"
@@ -40,6 +40,7 @@ const PostForm = ({ token, allPosts, setAllPosts, setNewPostWanted }) => {
           }}
         />
         <input
+          className="description"
           type="text"
           value={formState.description}
           placeholder="Description"
@@ -49,6 +50,7 @@ const PostForm = ({ token, allPosts, setAllPosts, setNewPostWanted }) => {
           }}
         />
         <input
+          className="price"
           type="text"
           value={formState.price}
           placeholder="Price"
@@ -58,6 +60,7 @@ const PostForm = ({ token, allPosts, setAllPosts, setNewPostWanted }) => {
           }}
         />
         <input
+          className="location"
           type="text"
           value={formState.location}
           placeholder="Location"
@@ -65,19 +68,20 @@ const PostForm = ({ token, allPosts, setAllPosts, setNewPostWanted }) => {
             setFormState({ ...formState, location: e.target.value });
           }}
         />
-        <div>
+        <div className="deliver">
           <div>Deliver?</div>
           <input
             type="checkbox"
             value={formState.willDeliver}
             onChange={() => {
-              setFormState({ ...formState, willDeliver: !formState.willDeliver });
+              setFormState({
+                ...formState,
+                willDeliver: !formState.willDeliver,
+              });
             }}
           />
         </div>
-        <button
-          type="submit"
-        >
+        <button className="newPostButton" type="submit">
           Submit Post
         </button>
       </form>

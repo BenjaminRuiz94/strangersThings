@@ -8,14 +8,14 @@ const Login = ({ setToken }) => {
     password: "",
   });
   return (
-    <div>
+    <div className="userSubmit">
       <form
         onSubmit={async (e) => {
           e.preventDefault();
           const result = await loginUser(
             formState.username,
             formState.password
-          )
+          );
           setToken(result.data.token);
           localStorage.setItem("token", result.data.token);
         }}

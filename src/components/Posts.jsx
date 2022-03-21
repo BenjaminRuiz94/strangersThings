@@ -12,38 +12,42 @@ const Posts = ({ allPosts, token, setAllPosts }) => {
       {allPosts.map((post, i) => {
         return (
           <div key={i} className="post">
-            <header>
+            <header className="pHeader">
               <h1>
                 {post.title}, {post.price}
               </h1>
 
-              <h2>{post.author.username}</h2>
+              <h3>{post.author.username}</h3>
 
-              <h2>
+              <p>
                 {post.location === "[On Request]"
                   ? "Location available on request"
                   : post.location}
-              </h2>
+              </p>
             </header>
 
-            <article>{post.description}</article>
+            <article className="postDetails">{post.description}</article>
 
-            <div>{post.willDeliver ? "Will Deliver" : "Local Pickup Only"}</div>
+            <div className="delivery">
+              {post.willDeliver ? "Will Deliver" : "Local Pickup Only"}
+            </div>
 
             {msgBox.yes ? (
               msgBox.idx == i ? (
                 <Message post={post} setMsgBox={setMsgBox} />
               ) : (
                 <button
+                  className="msgButton1"
                   onClick={() => {
                     setMsgBox({ ...msgBox, idx: i });
                   }}
                 >
-                  Create Message
+                  Send Message
                 </button>
               )
             ) : (
               <button
+                className="msgButton2"
                 onClick={() => {
                   setMsgBox({ ...msgBox, idx: i });
                 }}
@@ -54,6 +58,7 @@ const Posts = ({ allPosts, token, setAllPosts }) => {
 
             {post.isAuthor ? (
               <button
+                className="deleteB"
                 onClick={async () => {
                   await deletePost(token, post._id);
                   const filteredPosts = allPosts.filter((currentPost) => {

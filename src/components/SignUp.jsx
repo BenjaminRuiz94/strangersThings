@@ -2,26 +2,24 @@ import React from "react";
 import { registerUser } from "../api";
 import { useState } from "react";
 
-
-
 const SignUp = ({ setToken }) => {
   const [formState, setFormState] = useState({
     username: "",
     password: "",
-    confirmPassword: ""
+    confirmPassword: "",
   });
   return (
-    <div>
+    <div className="register">
       <form
         onSubmit={async (e) => {
-          e.preventDefault()
+          e.preventDefault();
           if (formState.password === formState.confirmPassword) {
             const result = await registerUser(
               formState.username,
               formState.password
-            )
-          setToken(result.data.token);
-          localStorage.setItem("token", result.data.token);
+            );
+            setToken(result.data.token);
+            localStorage.setItem("token", result.data.token);
           }
         }}
       >
