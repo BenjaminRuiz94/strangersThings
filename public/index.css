@@ -1,0 +1,206 @@
+.app {
+  display: flex;
+  flex-direction: column;
+}
+
+.mainDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgb(49, 49, 49);
+}
+.registerFunctions {
+  background-color: rgb(61, 0, 0);
+  border: double black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.userFunctions {
+  background-color: dimgray;
+  border: double black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 50%;
+}
+
+input[type="text"] {
+  border: double black;
+  padding: 4px;
+  transition: width 0.4s ease-in-out;
+}
+
+input[type="text"]:focus {
+  background-color: rgb(70, 8, 8);
+  border: double rgb(0, 0, 0);
+  width: 100%;
+}
+
+input[type="password"] {
+  border: double black;
+  padding: 4px;
+  transition: width 0.4s ease-in-out;
+}
+
+input[type="password"]:focus {
+  background-color: rgb(45, 45, 45);
+  color: azure;
+  border: double rgb(0, 0, 0);
+  width: 100%;
+}
+
+.loginButton {
+  margin-left: 10px;
+  border-radius: 50%;
+  padding: 5px;
+}
+
+.loginButton:hover {
+  background-color: blueviolet;
+  color: white;
+}
+
+.signupButton {
+  margin-left: 10px;
+  border-radius: 50%;
+  padding: 5px;
+}
+
+.signupButton:hover {
+  background-color: blueviolet;
+  color: white;
+}
+
+.greeting {
+  max-width: fit-content;
+  border-bottom: double black;
+  font-family: cursive;
+}
+
+.logOut {
+  max-width: fit-content;
+  max-height: fit-content;
+  margin-bottom: 10px;
+}
+
+.createPost {
+  display: flex;
+  align-items: center;
+  background-color: dimgray;
+  border: double black;
+  flex-direction: column;
+}
+
+.createTitle {
+  font-size: larger;
+  color: black;
+  font-weight: bold;
+  padding: 10px;
+  max-width: fit-content;
+  border-left: double black;
+  border-right: double black;
+}
+.title {
+  max-width: 250px;
+}
+.description {
+  max-width: 250px;
+  transition: height 0.4s ease-in-out;
+}
+
+.price {
+  max-width: 100px;
+}
+
+.location {
+  max-width: 250px;
+}
+
+.deliver {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border: double black;
+  min-width: 100px;
+  max-width: 100px;
+  padding: 5px;
+}
+
+.newPostButton {
+  max-width: fit-content;
+  padding: 10px;
+  font-weight: bold;
+  border-radius: 50%;
+}
+
+.createPostB {
+  max-width: fit-content;
+  max-height: fit-content;
+  padding: 5px;
+  margin-top: 20px;
+  border-radius: 50%;
+}
+
+.createPostB:hover {
+  background-color: blueviolet;
+  color: white;
+}
+
+.postGrid {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.post {
+  background-color: rgb(67, 4, 4);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: solid black;
+  justify-content: space-between;
+  min-width: 500px;
+  max-width: 500px;
+  min-height: 250px;
+  margin-top: 15px;
+}
+
+.pHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.postDetails {
+  border: double dimgray;
+  padding: 10px;
+  min-width: 95%;
+  background-color: antiquewhite;
+  text-align: center;
+}
+
+.delivery {
+  background-color: antiquewhite;
+  max-width: fit-content;
+  padding: 5px;
+  border-left: double black;
+  border-right: double black;
+  border-bottom: double black;
+}
+
+.msgButton1 {
+  max-width: fit-content;
+  padding: 5px;
+  margin: 10px;
+  border-radius: 50%;
+  transition-duration: 0.04s;
+}
+
+.msgButton1:hover {
+  background-color: blueviolet;
+  color: white;
+}
